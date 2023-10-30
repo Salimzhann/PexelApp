@@ -16,6 +16,9 @@
 		19D542D02AECF164003AE729 /* PexelUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D542CF2AECF164003AE729 /* PexelUITestsLaunchTests.swift */; };
 		19D542DE2AECF1D3003AE729 /* onBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D542DC2AECF1D3003AE729 /* onBoardingViewController.swift */; };
 		19D542DF2AECF1D3003AE729 /* onBoardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19D542DD2AECF1D3003AE729 /* onBoardingViewController.xib */; };
+		19D542E22AED4B14003AE729 /* onBoardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D542E02AED4B14003AE729 /* onBoardingCollectionViewCell.swift */; };
+		19D542E32AED4B14003AE729 /* onBoardingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19D542E12AED4B14003AE729 /* onBoardingCollectionViewCell.xib */; };
+		19D542E52AED5026003AE729 /* onboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D542E42AED5026003AE729 /* onboardingModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		19D542CF2AECF164003AE729 /* PexelUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PexelUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		19D542DC2AECF1D3003AE729 /* onBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onBoardingViewController.swift; sourceTree = "<group>"; };
 		19D542DD2AECF1D3003AE729 /* onBoardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = onBoardingViewController.xib; sourceTree = "<group>"; };
+		19D542E02AED4B14003AE729 /* onBoardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onBoardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		19D542E12AED4B14003AE729 /* onBoardingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = onBoardingCollectionViewCell.xib; sourceTree = "<group>"; };
+		19D542E42AED5026003AE729 /* onboardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,9 @@
 				19D542AE2AECF162003AE729 /* SceneDelegate.swift */,
 				19D542DC2AECF1D3003AE729 /* onBoardingViewController.swift */,
 				19D542DD2AECF1D3003AE729 /* onBoardingViewController.xib */,
+				19D542E02AED4B14003AE729 /* onBoardingCollectionViewCell.swift */,
+				19D542E12AED4B14003AE729 /* onBoardingCollectionViewCell.xib */,
+				19D542E42AED5026003AE729 /* onboardingModel.swift */,
 				19D542B52AECF163003AE729 /* Assets.xcassets */,
 				19D542B72AECF163003AE729 /* LaunchScreen.storyboard */,
 				19D542BA2AECF163003AE729 /* Info.plist */,
@@ -233,6 +242,7 @@
 			files = (
 				19D542DF2AECF1D3003AE729 /* onBoardingViewController.xib in Resources */,
 				19D542B92AECF163003AE729 /* LaunchScreen.storyboard in Resources */,
+				19D542E32AED4B14003AE729 /* onBoardingCollectionViewCell.xib in Resources */,
 				19D542B62AECF163003AE729 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,6 +271,8 @@
 				19D542AD2AECF162003AE729 /* AppDelegate.swift in Sources */,
 				19D542AF2AECF162003AE729 /* SceneDelegate.swift in Sources */,
 				19D542DE2AECF1D3003AE729 /* onBoardingViewController.swift in Sources */,
+				19D542E52AED5026003AE729 /* onboardingModel.swift in Sources */,
+				19D542E22AED4B14003AE729 /* onBoardingCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
