@@ -9,16 +9,20 @@ import UIKit
 
 class OnboardingView: UIViewController {
     
-    let image: [String] = ["1","2","3"]
-    let titleLabel: [String] = ["Access Anywhere", "Don’t Feel Alone","Happiness"]
-    let infoLabel: [String] = ["The video call feature can be accessed from anywhere in your house to help you.","Nobody likes to be alone and the built-in group video call feature helps you connect.", "While working the app reminds you to smile, laugh, walk and talk with those who matters."]
-    
+    var pages: [OnboardingModel] = [] {
+        didSet {
+            pictureCollectionView.reloadData()
+        }
+    }
     var currentPage = 0
 
     let pictureCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.showsHorizontalScrollIndicator = false
+        cv.isPagingEnabled = true
         cv.register(OnboardCollectionViewCell.self, forCellWithReuseIdentifier: OnboardCollectionViewCell.identifier)
         return cv
     }()
@@ -35,11 +39,20 @@ class OnboardingView: UIViewController {
         view.backgroundColor = .systemBackground
         setupUI()
         setupCollectionView()
+        pageGenerate()
     }
 
     func setupCollectionView() {
         pictureCollectionView.dataSource = self
         pictureCollectionView.delegate = self
+    }
+    
+    func pageGenerate() {
+        pages = [
+            OnboardingModel(image: "1", titleLabel: "Access Anywhere", label: "The video call feature can be accessed from anywhere in your house to help you."),
+            OnboardingModel(image: "2", titleLabel: "Don’t Feel Alone", label: "Nobody likes to be alone and the built-in group video call feature helps you connect."),
+            OnboardingModel(image: "3", titleLabel: "Happiness", label: "While working the app reminds you to smile, laugh, walk and talk with those who matters.")
+        ]
     }
 
     func setupUI() {
@@ -68,8 +81,12 @@ extension OnboardingView: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = pictureCollectionView.dequeueReusableCell(withReuseIdentifier: OnboardCollectionViewCell.identifier, for: indexPath) as! OnboardCollectionViewCell
         pageControl.currentPage = indexPath.item
-        cell.configure(image: image[indexPath.item], titleLabel: titleLabel[indexPath.item], infoLabel: infoLabel[indexPath.item])
+        cell.configure(pages: pages[indexPath.item])
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return collectionView.frame.size
+        
     }
     
     

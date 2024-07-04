@@ -14,6 +14,8 @@ class OnboardCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         label.textColor = .gray
+        label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
     
@@ -31,15 +33,33 @@ class OnboardCollectionViewCell: UICollectionViewCell {
         return image
     }()
     
-    func configure(image: String, titleLabel: String, infoLabel: String) {
-        self.image.image = UIImage(named: image)
-        self.title.text = titleLabel
-        self.label.text = infoLabel
+    func configure(pages: OnboardingModel) {
+        self.image.image = UIImage(named: pages.image)
+        self.title.text = pages.titleLabel
+        self.label.text = pages.label
         
         setupUI()
     }
     
     func setupUI() {
+        [image, title, label].forEach({
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            self.addSubview($0)
+        })
         
+        NSLayoutConstraint.activate([
+            image.topAnchor.constraint(equalTo: self.topAnchor, constant: 104),
+            image.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            image.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            image.heightAnchor.constraint(equalToConstant: 266.71),
+            
+            title.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 30),
+            title.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            
+            label.topAnchor.constraint(equalTo: title.bottomAnchor,constant: 5),
+            label.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 47),
+            label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -47),
+        ])
     }
 }
