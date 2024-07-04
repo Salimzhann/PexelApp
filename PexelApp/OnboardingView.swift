@@ -9,6 +9,10 @@ import UIKit
 
 class OnboardingView: UIViewController {
     
+    let image: [String] = ["1","2","3"]
+    let titleLabel: [String] = ["Access Anywhere", "Don’t Feel Alone","Happiness"]
+    let infoLabel: [String] = ["The video call feature can be accessed from anywhere in your house to help you.","Nobody likes to be alone and the built-in group video call feature helps you connect.", "While working the app reminds you to smile, laugh, walk and talk with those who matters."]
+    
     var currentPage = 0
 
     let pictureCollectionView: UICollectionView = {
@@ -58,11 +62,14 @@ class OnboardingView: UIViewController {
 
 extension OnboardingView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        let cell = pictureCollectionView.dequeueReusableCell(withReuseIdentifier: OnboardCollectionViewCell.identifier, for: indexPath) as! OnboardCollectionViewCell
+        pageControl.currentPage = indexPath.item
+        cell.configure(image: image[indexPath.item], titleLabel: titleLabel[indexPath.item], infoLabel: infoLabel[indexPath.item])
+        return cell
     }
     
     
