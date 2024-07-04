@@ -31,6 +31,8 @@ class OnboardingView: UIViewController {
         let ping = UIPageControl()
         ping.numberOfPages = 3
         ping.currentPage = 0
+        ping.pageIndicatorTintColor = .gray
+        ping.currentPageIndicatorTintColor = .black
         return ping
     }()
     
@@ -80,7 +82,6 @@ extension OnboardingView: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = pictureCollectionView.dequeueReusableCell(withReuseIdentifier: OnboardCollectionViewCell.identifier, for: indexPath) as! OnboardCollectionViewCell
-        pageControl.currentPage = indexPath.item
         cell.configure(pages: pages[indexPath.item])
         return cell
     }
@@ -88,6 +89,11 @@ extension OnboardingView: UICollectionViewDelegate, UICollectionViewDataSource, 
         return collectionView.frame.size
         
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+           let pageIndex = round(scrollView.contentOffset.x / scrollView.frame.width)
+           pageControl.currentPage = Int(pageIndex)
+       }
     
     
 }
