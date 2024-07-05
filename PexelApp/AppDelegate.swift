@@ -14,7 +14,13 @@ var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
-        window?.rootViewController = OnboardingView()
+        let seeOnboard = UserDefaults.standard.bool(forKey: OnboardingView.key)
+        
+        if seeOnboard {
+            window?.rootViewController = MainViewController()
+        } else {
+            window?.rootViewController = OnboardingView()
+        }
         window?.makeKeyAndVisible()
         
         return true

@@ -9,6 +9,8 @@ import UIKit
 
 class OnboardingView: UIViewController {
     
+    static let key: String = "seeOnboading"
+    
     var pages: [OnboardingModel] = []
     var currentPage = 0
     
@@ -31,6 +33,7 @@ class OnboardingView: UIViewController {
         button.layer.cornerRadius = 20
         button.alpha = 0.5
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        button.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -112,9 +115,21 @@ class OnboardingView: UIViewController {
                 nextButton.setTitle("Start", for: .normal)
                 skipButton.isHidden = true
             }
+        } else {
+            start()
         }
     }
+    @objc func skipButtonTapped() {
+        start()
+    }
+    
+    func start() {
+        UserDefaults.standard.set(true, forKey: OnboardingView.key)
+        view.window?.rootViewController = MainViewController()
+        view.window?.makeKeyAndVisible()
+    }
 }
+
 
 extension OnboardingView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
