@@ -9,12 +9,30 @@ import UIKit
 
 class OnboardingView: UIViewController {
     
-    var pages: [OnboardingModel] = [] {
-        didSet {
-            pictureCollectionView.reloadData()
-        }
-    }
+    var pages: [OnboardingModel] = []
     var currentPage = 0
+    
+    let nextButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Next", for: .normal)
+        button.backgroundColor = .systemGreen
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 25
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 25)
+        button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    let skipButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Skip", for: .normal)
+        button.backgroundColor = .systemGreen
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 20
+        button.alpha = 0.5
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        return button
+    }()
 
     let pictureCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -58,7 +76,7 @@ class OnboardingView: UIViewController {
     }
 
     func setupUI() {
-        [pictureCollectionView, pageControl].forEach({
+        [pictureCollectionView, pageControl, nextButton, skipButton].forEach({
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         })
@@ -71,7 +89,30 @@ class OnboardingView: UIViewController {
             
             pageControl.topAnchor.constraint(equalTo: pictureCollectionView.bottomAnchor, constant: 10),
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            nextButton.topAnchor.constraint(equalTo: pictureCollectionView.bottomAnchor, constant: 110),
+            nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20),
+            nextButton.heightAnchor.constraint(equalToConstant: 50),
+            nextButton.widthAnchor.constraint(equalToConstant: 160),
+            
+            skipButton.topAnchor.constraint(equalTo: pictureCollectionView.bottomAnchor, constant: 115),
+            skipButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -20),
+            skipButton.heightAnchor.constraint(equalToConstant: 40),
+            skipButton.widthAnchor.constraint(equalToConstant: 140)
         ])
+    }
+    
+    @objc func nextButtonTapped() {
+        if currentPage < 2 {
+            currentPage += 1
+            pageControl.currentPage = currentPage
+            nextButton.setTitle("Next", for: .normal)
+            pictureCollectionView.scrollToItem(at: IndexPath(item: currentPage, section: 0), at: .centeredHorizontally, animated: true)
+            if currentPage == 2 {
+                nextButton.setTitle("Start", for: .normal)
+                skipButton.isHidden = true
+            }
+        }
     }
 }
 
@@ -91,8 +132,17 @@ extension OnboardingView: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-           let pageIndex = round(scrollView.contentOffset.x / scrollView.frame.width)
-           pageControl.currentPage = Int(pageIndex)
+            let pageIndex = round(scrollView.contentOffset.x / scrollView.frame.width)
+            currentPage = Int(pageIndex)
+            pageControl.currentPage = Int(pageIndex)
+        
+        if pageControl.currentPage == 2 {
+            skipButton.isHidden = true
+            nextButton.setTitle("Start", for: .normal)
+        } else {
+            skipButton.isHidden = false
+            nextButton.setTitle("Next", for: .normal)
+        }
        }
     
     
