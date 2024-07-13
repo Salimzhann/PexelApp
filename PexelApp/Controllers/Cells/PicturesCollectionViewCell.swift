@@ -10,7 +10,14 @@ import UIKit
 class PicturesCollectionViewCell: UICollectionViewCell {
     static let identifier: String = "pictureCell"
     
-    func configure() {
+    var image: UIImageView = {
+        let image = UIImageView()
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFill
+    }()
+    
+    func configure(image: Photo) {
+        self.image = UIImage(data: image)!
         
     }
 }

@@ -10,6 +10,18 @@ import UIKit
 class MainViewController: UIViewController {
     let key: String = "F834iRfCFBFzNmy444aZAziZRmHTmMZbpdxdexyKu7t99MUvGyaw9mEI"
     
+    var searchPhoto: PictureResponse? {
+        didSet {
+            DispatchQueue.main.async {
+                self.imagesCollectionView.reloadData()
+            }
+        }
+    }
+    
+    var pictureArray: [Photo] {
+        return searchPhoto?.photos ?? []
+    }
+    
     let searchBar: UISearchBar = {
         let bar = UISearchBar()
         bar.placeholder = "Enter here"
@@ -27,14 +39,14 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-//        setupCollectionView()
+        setupCollectionView()
         fetchData()
     }
     
-//    func setupCollectionView() {
-//        imagesCollectionView.dataSource = self
-//        imagesCollectionView.delegate = self
-//    }
+    func setupCollectionView() {
+        imagesCollectionView.dataSource = self
+        imagesCollectionView.delegate = self
+    }
     
     func setupUI() {
         searchBar.delegate = self
@@ -93,7 +105,7 @@ class MainViewController: UIViewController {
             if let data = data {
                 do {
                     let ans = try JSONDecoder().decode(PictureResponse.self, from: data)
-                    print(ans)
+                    self.searchPhoto = ans
                 }
                 catch {
                     print(error.localizedDescription)
@@ -125,14 +137,16 @@ extension MainViewController: UISearchBarDelegate {
        }
 }
 
-//extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        <#code#>
-//    }
-//
-//
-//}
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        pictureArray.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: PicturesCollectionViewCell.identifier, for: indexPath) as! PicturesCollectionViewCell
+        cell.configure(image: pictureArray[indexPath.item])
+        return cell
+    }
+
+
+}
