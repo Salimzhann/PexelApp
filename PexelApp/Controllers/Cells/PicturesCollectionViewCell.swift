@@ -14,6 +14,7 @@ class PicturesCollectionViewCell: UICollectionViewCell {
         let image = UIImageView()
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
+        image.image = UIImage(systemName: "hourglass.circle")
         return image
     }()
     
@@ -26,12 +27,14 @@ class PicturesCollectionViewCell: UICollectionViewCell {
             if let data = data {
                 DispatchQueue.main.async {
                     self.image.image = UIImage(data: data)
+
                 }
+                
             }
             if let error = error {
                 print(error.localizedDescription)
             }
-        }
+        }.resume()
         setupUI()
     }
     

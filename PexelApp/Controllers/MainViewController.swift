@@ -31,7 +31,7 @@ class MainViewController: UIViewController {
     let imagesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 10
+        layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 5
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.register(PicturesCollectionViewCell.self, forCellWithReuseIdentifier: PicturesCollectionViewCell.identifier)
@@ -66,8 +66,8 @@ class MainViewController: UIViewController {
             searchBar.heightAnchor.constraint(equalToConstant: 40),
             
             imagesCollectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 10),
-            imagesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            imagesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            imagesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            imagesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             imagesCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
@@ -151,7 +151,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = view.frame.width / 3 - 40
+        let padding: CGFloat = 20
+        let width = (view.frame.width - padding) / 3
         return CGSize(width: width, height: width)
     }
 
