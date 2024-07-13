@@ -18,6 +18,8 @@ class MainViewController: UIViewController {
         }
     }
     
+    var historyArray: [String] = []
+    
     var pictureArray: [Photo] {
         return searchPhoto?.photos ?? []
     }
@@ -33,6 +35,7 @@ class MainViewController: UIViewController {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 10
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.isScrollEnabled = true
         cv.register(HistoryCollectionViewCell.self, forCellWithReuseIdentifier: HistoryCollectionViewCell.identifier)
         return cv
     }()
@@ -76,7 +79,12 @@ class MainViewController: UIViewController {
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             searchBar.heightAnchor.constraint(equalToConstant: 40),
             
-            imagesCollectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 10),
+            historyCollectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 10),
+            historyCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            historyCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -5),
+            historyCollectionView.heightAnchor.constraint(equalToConstant: 30),
+            
+            imagesCollectionView.topAnchor.constraint(equalTo: historyCollectionView.bottomAnchor, constant: 10),
             imagesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
             imagesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             imagesCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -129,6 +137,19 @@ class MainViewController: UIViewController {
             }
         }.resume()
             }
+    func addToHistory() {
+        guard let value = searchBar.text else {
+            print("searchBar is nil")
+            return
+        }
+        guard !value.isEmpty else {
+            print("searchBar is empty")
+            return
+        }
+        
+        historyArray.append(value)
+        historyCollectionView.reloadData()
+    }
 }
 
 extension MainViewController: UISearchBarDelegate {
@@ -147,24 +168,42 @@ extension MainViewController: UISearchBarDelegate {
        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
            searchBar.resignFirstResponder()
            fetchData()
+           addToHistory()
        }
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        pictureArray.count
+        if collectionView == imagesCollectionView {
+            return pictureArray.count
+        } else {
+            return historyArray.count
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: PicturesCollectionViewCell.identifier, for: indexPath) as! PicturesCollectionViewCell
-        cell.configure(image: pictureArray[indexPath.item])
-        return cell
+        if collectionView == imagesCollectionView {
+            let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: PicturesCollectionViewCell.identifier, for: indexPath) as! PicturesCollectionViewCell
+            cell.configure(image: pictureArray[indexPath.item])
+            return cell
+        } else {
+            let cell = historyCollectionView.dequeueReusableCell(withReuseIdentifier: HistoryCollectionViewCell.identifier, for: indexPath) as! HistoryCollectionViewCell
+            cell.configure(value: historyArray[indexPath.item])
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let padding: CGFloat = 20
-        let width = (view.frame.width - padding) / 3
-        return CGSize(width: width, height: width)
+        if collectionView == imagesCollectionView {
+            let padding: CGFloat = 20
+            let width = (view.frame.width - padding) / 3
+            return CGSize(width: width, height: width)
+        } else {
+            let label = UILabel()
+            label.text = historyArray[indexPath.item]
+            label.sizeToFit()
+            return CGSize(width: label.frame.width + 40, height: 30)
+        }
     }
 
 
