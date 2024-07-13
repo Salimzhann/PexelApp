@@ -31,6 +31,8 @@ class MainViewController: UIViewController {
     let imagesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 5
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.register(PicturesCollectionViewCell.self, forCellWithReuseIdentifier: PicturesCollectionViewCell.identifier)
         return cv
@@ -146,6 +148,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: PicturesCollectionViewCell.identifier, for: indexPath) as! PicturesCollectionViewCell
         cell.configure(image: pictureArray[indexPath.item])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = view.frame.width / 3 - 40
+        return CGSize(width: width, height: width)
     }
 
 
