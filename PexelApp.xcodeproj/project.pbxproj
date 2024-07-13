@@ -17,6 +17,7 @@
 		195551E72C3837790049BFB2 /* PictureResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195551E62C3837790049BFB2 /* PictureResponse.swift */; };
 		1957338C2C36B2050060874C /* OnboardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1957338B2C36B2050060874C /* OnboardCollectionViewCell.swift */; };
 		1957338E2C36EE460060874C /* OnboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1957338D2C36EE460060874C /* OnboardingModel.swift */; };
+		195BE56E2C42B648008BF42B /* HistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195BE56D2C42B648008BF42B /* HistoryCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		195551E62C3837790049BFB2 /* PictureResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureResponse.swift; sourceTree = "<group>"; };
 		1957338B2C36B2050060874C /* OnboardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardCollectionViewCell.swift; sourceTree = "<group>"; };
 		1957338D2C36EE460060874C /* OnboardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingModel.swift; sourceTree = "<group>"; };
+		195BE56D2C42B648008BF42B /* HistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			children = (
 				1957338B2C36B2050060874C /* OnboardCollectionViewCell.swift */,
 				195551E42C382EE10049BFB2 /* PicturesCollectionViewCell.swift */,
+				195BE56D2C42B648008BF42B /* HistoryCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				1927B22C2C33F2460041043A /* AppDelegate.swift in Sources */,
 				195551E72C3837790049BFB2 /* PictureResponse.swift in Sources */,
 				195551DF2C37CBBB0049BFB2 /* MainViewController.swift in Sources */,
+				195BE56E2C42B648008BF42B /* HistoryCollectionViewCell.swift in Sources */,
 				1957338C2C36B2050060874C /* OnboardCollectionViewCell.swift in Sources */,
 				1927B22E2C33F2460041043A /* SceneDelegate.swift in Sources */,
 				195551E52C382EE10049BFB2 /* PicturesCollectionViewCell.swift in Sources */,

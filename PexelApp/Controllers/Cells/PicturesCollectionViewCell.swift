@@ -15,6 +15,7 @@ class PicturesCollectionViewCell: UICollectionViewCell {
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
         image.image = UIImage(systemName: "hourglass.circle")
+        image.tintColor = .systemGray4
         return image
     }()
     

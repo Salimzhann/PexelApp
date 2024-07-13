@@ -28,6 +28,15 @@ class MainViewController: UIViewController {
         return bar
     }()
     
+    let historyCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 10
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.register(HistoryCollectionViewCell.self, forCellWithReuseIdentifier: HistoryCollectionViewCell.identifier)
+        return cv
+    }()
+    
     let imagesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -42,19 +51,21 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupCollectionView()
-        fetchData()
     }
     
     func setupCollectionView() {
         imagesCollectionView.dataSource = self
         imagesCollectionView.delegate = self
+        
+        historyCollectionView.dataSource = self
+        historyCollectionView.delegate = self
     }
     
     func setupUI() {
         searchBar.delegate = self
         view.backgroundColor = .systemBackground
         
-        [searchBar, imagesCollectionView].forEach({
+        [searchBar, imagesCollectionView, historyCollectionView].forEach({
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         })
@@ -88,7 +99,7 @@ class MainViewController: UIViewController {
         var urlComponents = URLComponents(string: endpoint)
         let parameters = [
             URLQueryItem(name: "query", value: value),
-            URLQueryItem(name: "per_page", value: "50")
+            URLQueryItem(name: "per_page", value: "100")
         ]
         
         urlComponents?.queryItems = parameters
