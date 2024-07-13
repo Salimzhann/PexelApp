@@ -35,7 +35,7 @@ class MainViewController: UIViewController {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 10
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.isScrollEnabled = true
+        cv.showsHorizontalScrollIndicator = false
         cv.register(HistoryCollectionViewCell.self, forCellWithReuseIdentifier: HistoryCollectionViewCell.identifier)
         return cv
     }()
@@ -46,6 +46,7 @@ class MainViewController: UIViewController {
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 5
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.showsVerticalScrollIndicator = false
         cv.register(PicturesCollectionViewCell.self, forCellWithReuseIdentifier: PicturesCollectionViewCell.identifier)
         return cv
     }()
