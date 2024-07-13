@@ -13,6 +13,8 @@
 		1927B2352C33F2470041043A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1927B2342C33F2470041043A /* Assets.xcassets */; };
 		1927B2382C33F2470041043A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1927B2362C33F2470041043A /* LaunchScreen.storyboard */; };
 		195551DF2C37CBBB0049BFB2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195551DE2C37CBBB0049BFB2 /* MainViewController.swift */; };
+		195551E52C382EE10049BFB2 /* PicturesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195551E42C382EE10049BFB2 /* PicturesCollectionViewCell.swift */; };
+		195551E72C3837790049BFB2 /* PictureResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195551E62C3837790049BFB2 /* PictureResponse.swift */; };
 		1957338C2C36B2050060874C /* OnboardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1957338B2C36B2050060874C /* OnboardCollectionViewCell.swift */; };
 		1957338E2C36EE460060874C /* OnboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1957338D2C36EE460060874C /* OnboardingModel.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +28,8 @@
 		1927B2372C33F2470041043A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1927B2392C33F2470041043A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		195551DE2C37CBBB0049BFB2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		195551E42C382EE10049BFB2 /* PicturesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesCollectionViewCell.swift; sourceTree = "<group>"; };
+		195551E62C3837790049BFB2 /* PictureResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureResponse.swift; sourceTree = "<group>"; };
 		1957338B2C36B2050060874C /* OnboardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardCollectionViewCell.swift; sourceTree = "<group>"; };
 		1957338D2C36EE460060874C /* OnboardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,15 +66,41 @@
 			children = (
 				1927B22B2C33F2460041043A /* AppDelegate.swift */,
 				1927B22D2C33F2460041043A /* SceneDelegate.swift */,
-				1927B22F2C33F2460041043A /* OnboardingView.swift */,
-				195551DE2C37CBBB0049BFB2 /* MainViewController.swift */,
-				1957338B2C36B2050060874C /* OnboardCollectionViewCell.swift */,
-				1957338D2C36EE460060874C /* OnboardingModel.swift */,
+				195551E22C37E1180049BFB2 /* Controllers */,
+				195551E32C37E1370049BFB2 /* Models */,
 				1927B2342C33F2470041043A /* Assets.xcassets */,
 				1927B2362C33F2470041043A /* LaunchScreen.storyboard */,
 				1927B2392C33F2470041043A /* Info.plist */,
 			);
 			path = PexelApp;
+			sourceTree = "<group>";
+		};
+		195551E12C37E0C60049BFB2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1957338B2C36B2050060874C /* OnboardCollectionViewCell.swift */,
+				195551E42C382EE10049BFB2 /* PicturesCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		195551E22C37E1180049BFB2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1927B22F2C33F2460041043A /* OnboardingView.swift */,
+				195551DE2C37CBBB0049BFB2 /* MainViewController.swift */,
+				195551E12C37E0C60049BFB2 /* Cells */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		195551E32C37E1370049BFB2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				195551E62C3837790049BFB2 /* PictureResponse.swift */,
+				1957338D2C36EE460060874C /* OnboardingModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +176,11 @@
 				1957338E2C36EE460060874C /* OnboardingModel.swift in Sources */,
 				1927B2302C33F2460041043A /* OnboardingView.swift in Sources */,
 				1927B22C2C33F2460041043A /* AppDelegate.swift in Sources */,
+				195551E72C3837790049BFB2 /* PictureResponse.swift in Sources */,
 				195551DF2C37CBBB0049BFB2 /* MainViewController.swift in Sources */,
 				1957338C2C36B2050060874C /* OnboardCollectionViewCell.swift in Sources */,
 				1927B22E2C33F2460041043A /* SceneDelegate.swift in Sources */,
+				195551E52C382EE10049BFB2 /* PicturesCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
