@@ -17,6 +17,15 @@ class HistoryCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    let timeImage: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        image.image = UIImage(systemName: "clock")
+        image.tintColor = .white
+        return image
+    }()
+    
     func configure(value: String) {
         label.text = value
         setupUI()
@@ -26,11 +35,18 @@ class HistoryCollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius = 12
         self.backgroundColor = .systemGray4
         self.addSubview(label)
+        self.addSubview(timeImage)
         label.translatesAutoresizingMaskIntoConstraints = false
+        timeImage.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            label.leadingAnchor.constraint(equalTo: timeImage.trailingAnchor, constant: 5),
+            label.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            
+            timeImage.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            timeImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
+            timeImage.widthAnchor.constraint(equalToConstant: 15),
+            timeImage.heightAnchor.constraint(equalToConstant: 15)
         ])
     }
 }

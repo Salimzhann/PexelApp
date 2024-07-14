@@ -189,7 +189,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         } else {
             let cell = historyCollectionView.dequeueReusableCell(withReuseIdentifier: HistoryCollectionViewCell.identifier, for: indexPath) as! HistoryCollectionViewCell
-            cell.configure(value: historyArray[indexPath.item])
+            cell.configure(value: historyArray[historyArray.count - indexPath.item - 1])
+//            cell.configure(value: historyArray[indexPath.item])
             return cell
         }
     }
@@ -201,9 +202,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return CGSize(width: width, height: width)
         } else {
             let label = UILabel()
-            label.text = historyArray[indexPath.item]
+            label.text = historyArray[historyArray.count - 1 - indexPath.item]
             label.sizeToFit()
-            return CGSize(width: label.frame.width + 40, height: 30)
+            return CGSize(width: label.frame.width + 50, height: 30)
         }
     }
 
