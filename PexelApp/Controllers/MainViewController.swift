@@ -66,6 +66,9 @@ class MainViewController: UIViewController {
     }
     
     func setupUI() {
+        navigationController?.navigationBar.isHidden = false
+        title = "Main Page"
+        
         searchBar.delegate = self
         view.backgroundColor = .systemBackground
         
@@ -190,8 +193,16 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         } else {
             let cell = historyCollectionView.dequeueReusableCell(withReuseIdentifier: HistoryCollectionViewCell.identifier, for: indexPath) as! HistoryCollectionViewCell
             cell.configure(value: historyArray[historyArray.count - indexPath.item - 1])
-//            cell.configure(value: historyArray[indexPath.item])
             return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == imagesCollectionView {
+            let selectedImage = pictureArray[indexPath.item]
+            let detailVC = ImageDetailViewController()
+            detailVC.image = selectedImage
+            navigationController?.pushViewController(detailVC, animated: true)
         }
     }
     

@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let seeOnboard = UserDefaults.standard.bool(forKey: OnboardingView.key)
         
         if seeOnboard {
-            window?.rootViewController = MainViewController()
+            window?.rootViewController = UINavigationController(rootViewController: MainViewController())
         } else {
             window?.rootViewController = OnboardingView()
         }

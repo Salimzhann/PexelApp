@@ -18,6 +18,7 @@
 		1957338C2C36B2050060874C /* OnboardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1957338B2C36B2050060874C /* OnboardCollectionViewCell.swift */; };
 		1957338E2C36EE460060874C /* OnboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1957338D2C36EE460060874C /* OnboardingModel.swift */; };
 		195BE56E2C42B648008BF42B /* HistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195BE56D2C42B648008BF42B /* HistoryCollectionViewCell.swift */; };
+		195BE5702C43AC40008BF42B /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195BE56F2C43AC40008BF42B /* ImageDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		1957338B2C36B2050060874C /* OnboardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardCollectionViewCell.swift; sourceTree = "<group>"; };
 		1957338D2C36EE460060874C /* OnboardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingModel.swift; sourceTree = "<group>"; };
 		195BE56D2C42B648008BF42B /* HistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		195BE56F2C43AC40008BF42B /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			children = (
 				1927B22F2C33F2460041043A /* OnboardingView.swift */,
 				195551DE2C37CBBB0049BFB2 /* MainViewController.swift */,
+				195BE56F2C43AC40008BF42B /* ImageDetailViewController.swift */,
 				195551E12C37E0C60049BFB2 /* Cells */,
 			);
 			path = Controllers;
@@ -185,6 +188,7 @@
 				1957338C2C36B2050060874C /* OnboardCollectionViewCell.swift in Sources */,
 				1927B22E2C33F2460041043A /* SceneDelegate.swift in Sources */,
 				195551E52C382EE10049BFB2 /* PicturesCollectionViewCell.swift in Sources */,
+				195BE5702C43AC40008BF42B /* ImageDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
